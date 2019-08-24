@@ -1,0 +1,10 @@
+{
+  "ProjectName": "HexaVarsity",
+  "Duration": 10,
+  "Company": "Sameer Parab",
+  "Course": {
+    "Title": "DotNet core",
+    "TotalCount": 20
+  },
+  "Message": "I am from mysetting.json"
+}

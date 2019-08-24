@@ -1,0 +1,556 @@
+Microsoft Windows [Version 10.0.17763.379]
+(c) 2018 Microsoft Corporation. All rights reserved.
+
+D:\Azure\KBS>code .
+
+D:\Azure\KBS>kubectl
+kubectl controls the Kubernetes cluster manager.
+
+Find more information at: https://kubernetes.io/docs/reference/kubectl/overview/
+
+Basic Commands (Beginner):
+  create         Create a resource from a file or from stdin.
+  expose         Take a replication controller, service, deployment or pod and expose it as a new Kubernetes Service
+  run            Run a particular image on the cluster
+  set            Set specific features on objects
+  run-container  Run a particular image on the cluster. This command is deprecated, use "run" instead
+
+Basic Commands (Intermediate):
+  get            Display one or many resources
+  explain        Documentation of resources
+  edit           Edit a resource on the server
+  delete         Delete resources by filenames, stdin, resources and names, or by resources and label selector
+
+Deploy Commands:
+  rollout        Manage the rollout of a resource
+  rolling-update Perform a rolling update of the given ReplicationController
+  scale          Set a new size for a Deployment, ReplicaSet, Replication Controller, or Job
+  autoscale      Auto-scale a Deployment, ReplicaSet, or ReplicationController
+
+Cluster Management Commands:
+  certificate    Modify certificate resources.
+  cluster-info   Display cluster info
+  top            Display Resource (CPU/Memory/Storage) usage.
+  cordon         Mark node as unschedulable
+  uncordon       Mark node as schedulable
+  drain          Drain node in preparation for maintenance
+  taint          Update the taints on one or more nodes
+
+Troubleshooting and Debugging Commands:
+  describe       Show details of a specific resource or group of resources
+  logs           Print the logs for a container in a pod
+  attach         Attach to a running container
+  exec           Execute a command in a container
+  port-forward   Forward one or more local ports to a pod
+  proxy          Run a proxy to the Kubernetes API server
+  cp             Copy files and directories to and from containers.
+  auth           Inspect authorization
+
+Advanced Commands:
+  apply          Apply a configuration to a resource by filename or stdin
+  patch          Update field(s) of a resource using strategic merge patch
+  replace        Replace a resource by filename or stdin
+  convert        Convert config files between different API versions
+
+Settings Commands:
+  label          Update the labels on a resource
+  annotate       Update the annotations on a resource
+  completion     Output shell completion code for the specified shell (bash or zsh)
+
+Other Commands:
+  api-versions   Print the supported API versions on the server, in the form of "group/version"
+  config         Modify kubeconfig files
+  help           Help about any command
+  plugin         Runs a command-line plugin
+  version        Print the client and server version information
+
+Usage:
+  kubectl [flags] [options]
+
+Use "kubectl <command> --help" for more information about a given command.
+Use "kubectl options" for a list of global command-line options (applies to all commands).
+
+D:\Azure\KBS>kubectl get svc
+NAME           TYPE           CLUSTER-IP     EXTERNAL-IP    PORT(S)        AGE
+insurancesvc   LoadBalancer   10.0.204.229   23.97.56.224   80:31915/TCP   4m
+kubernetes     ClusterIP      10.0.0.1       <none>         443/TCP        1h
+
+D:\Azure\KBS>kubectl get svc
+NAME           TYPE           CLUSTER-IP     EXTERNAL-IP    PORT(S)        AGE
+insurancesvc   LoadBalancer   10.0.204.229   23.97.56.224   80:31915/TCP   15m
+kubernetes     ClusterIP      10.0.0.1       <none>         443/TCP        1h
+
+D:\Azure\KBS>kubectl get pods
+NAME                                    READY     STATUS              RESTARTS   AGE
+insuranceportaldeploy-9588454c5-lx872   0/1       ContainerCreating   0          <invalid>
+insuranceportaldeploy-9588454c5-vsgqr   0/1       ContainerCreating   0          <invalid>
+
+D:\Azure\KBS>kubectl get rs
+NAME                              DESIRED   CURRENT   READY     AGE
+insuranceportaldeploy-9588454c5   2         2         1         <invalid>
+
+D:\Azure\KBS>kubectl get deploy
+NAME                    DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+insuranceportaldeploy   2         2         2            2           1s
+
+D:\Azure\KBS>kubectl get svc
+NAME           TYPE           CLUSTER-IP     EXTERNAL-IP    PORT(S)        AGE
+insurancesvc   LoadBalancer   10.0.204.229   23.97.56.224   80:31915/TCP   16m
+kubernetes     ClusterIP      10.0.0.1       <none>         443/TCP        1h
+
+D:\Azure\KBS>kubectl get pods
+NAME                                    READY     STATUS    RESTARTS   AGE
+insuranceportaldeploy-9588454c5-lx872   1/1       Running   0          5m
+insuranceportaldeploy-9588454c5-vsgqr   1/1       Running   0          5m
+
+D:\Azure\KBS>kubectl get rs
+NAME                              DESIRED   CURRENT   READY     AGE
+insuranceportaldeploy-9588454c5   2         2         2         6m
+
+D:\Azure\KBS>kubectl get rs
+NAME                              DESIRED   CURRENT   READY     AGE
+insuranceportaldeploy-9588454c5   2         2         0         34m
+
+D:\Azure\KBS>kubectl get deploy
+No resources found.
+
+D:\Azure\KBS>kubectl get rs
+No resources found.
+
+D:\Azure\KBS>kubectl get svc
+NAME         TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
+kubernetes   ClusterIP   10.0.0.1     <none>        443/TCP   20m
+
+D:\Azure\KBS>kubectl get pods
+No resources found.
+
+D:\Azure\KBS>kubectl get secret
+NAME                  TYPE                                  DATA      AGE
+default-token-wkmrj   kubernetes.io/service-account-token   3         23m
+mssql                 Opaque                                1         35s
+
+D:\Azure\KBS>kubectl get pvc
+NAME         STATUS    VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+mssql-data   Bound     pvc-52364bd7-c4d5-11e9-b669-ae0b8116c8ce   8Gi        RWO            azure-disk     4s
+
+D:\Azure\KBS>kubectl get deploy
+NAME        DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+sqldeploy   1         1         1            0           <invalid>
+
+D:\Azure\KBS>kubectl get pods
+NAME                         READY     STATUS              RESTARTS   AGE
+sqldeploy-6cfff86f97-l4mqg   0/1       ContainerCreating   0          13s
+
+D:\Azure\KBS>kubectl get pods
+NAME                         READY     STATUS              RESTARTS   AGE
+sqldeploy-6cfff86f97-l4mqg   0/1       ContainerCreating   0          1m
+
+D:\Azure\KBS>kubectl get rs
+NAME                   DESIRED   CURRENT   READY     AGE
+sqldeploy-6cfff86f97   1         1         0         1m
+
+D:\Azure\KBS>kubectl get pods
+NAME                         READY     STATUS    RESTARTS   AGE
+sqldeploy-6cfff86f97-l4mqg   1/1       Running   0          1m
+
+D:\Azure\KBS>kubectl get pods
+NAME                         READY     STATUS    RESTARTS   AGE
+sqldeploy-6cfff86f97-l4mqg   1/1       Running   0          1m
+
+D:\Azure\KBS>kubectl get deploy
+NAME        DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+sqldeploy   1         1         1            1           2m
+
+D:\Azure\KBS>kubectl --version
+Error: unknown flag: --version
+
+
+Basic Commands (Beginner):
+  create         Create a resource from a file or from stdin.
+  expose         Take a replication controller, service, deployment or pod and expose it as a new Kubernetes Service
+  run            Run a particular image on the cluster
+  set            Set specific features on objects
+  run-container  Run a particular image on the cluster. This command is deprecated, use "run" instead
+
+Basic Commands (Intermediate):
+  get            Display one or many resources
+  explain        Documentation of resources
+  edit           Edit a resource on the server
+  delete         Delete resources by filenames, stdin, resources and names, or by resources and label selector
+
+Deploy Commands:
+  rollout        Manage the rollout of a resource
+  rolling-update Perform a rolling update of the given ReplicationController
+  scale          Set a new size for a Deployment, ReplicaSet, Replication Controller, or Job
+  autoscale      Auto-scale a Deployment, ReplicaSet, or ReplicationController
+
+Cluster Management Commands:
+  certificate    Modify certificate resources.
+  cluster-info   Display cluster info
+  top            Display Resource (CPU/Memory/Storage) usage.
+  cordon         Mark node as unschedulable
+  uncordon       Mark node as schedulable
+  drain          Drain node in preparation for maintenance
+  taint          Update the taints on one or more nodes
+
+Troubleshooting and Debugging Commands:
+  describe       Show details of a specific resource or group of resources
+  logs           Print the logs for a container in a pod
+  attach         Attach to a running container
+  exec           Execute a command in a container
+  port-forward   Forward one or more local ports to a pod
+  proxy          Run a proxy to the Kubernetes API server
+  cp             Copy files and directories to and from containers.
+  auth           Inspect authorization
+
+Advanced Commands:
+  apply          Apply a configuration to a resource by filename or stdin
+  patch          Update field(s) of a resource using strategic merge patch
+  replace        Replace a resource by filename or stdin
+  convert        Convert config files between different API versions
+
+Settings Commands:
+  label          Update the labels on a resource
+  annotate       Update the annotations on a resource
+  completion     Output shell completion code for the specified shell (bash or zsh)
+
+Other Commands:
+  api-versions   Print the supported API versions on the server, in the form of "group/version"
+  config         Modify kubeconfig files
+  help           Help about any command
+  plugin         Runs a command-line plugin
+  version        Print the client and server version information
+
+Usage:
+  kubectl [flags] [options]
+
+Use "kubectl <command> --help" for more information about a given command.
+Use "kubectl options" for a list of global command-line options (applies to all commands).
+
+unknown flag: --version
+
+D:\Azure\KBS>kubectl version
+Client Version: version.Info{Major:"1", Minor:"10", GitVersion:"v1.10.11", GitCommit:"637c7e288581ee40ab4ca210618a89a555b6e7e9", GitTreeState:"clean", BuildDate:"2018-11-26T14:38:32Z", GoVersion:"go1.9.3", Compiler:"gc", Platform:"windows/amd64"}
+Server Version: version.Info{Major:"1", Minor:"13", GitVersion:"v1.13.10", GitCommit:"37d169313237cb4ceb2cc4bef300f2ae3053c1a2", GitTreeState:"clean", BuildDate:"2019-08-19T10:44:49Z", GoVersion:"go1.11.13", Compiler:"gc", Platform:"linux/amd64"}
+
+D:\Azure\KBS>kubectl get deploy
+NAME        DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+sqldeploy   1         1         1            1           3m
+
+D:\Azure\KBS>kubectl get pods
+NAME                         READY     STATUS    RESTARTS   AGE
+sqldeploy-6cfff86f97-l4mqg   1/1       Running   0          3m
+
+D:\Azure\KBS>kubectl get rs
+NAME                   DESIRED   CURRENT   READY     AGE
+sqldeploy-6cfff86f97   1         1         1         5m
+
+D:\Azure\KBS>kubectl get pods
+NAME                         READY     STATUS    RESTARTS   AGE
+sqldeploy-6cfff86f97-l4mqg   1/1       Running   0          5m
+
+D:\Azure\KBS>kubectl get pods
+NAME                         READY     STATUS    RESTARTS   AGE
+sqldeploy-6cfff86f97-l4mqg   1/1       Running   0          8m
+
+D:\Azure\KBS>kubectl get deploy
+NAME        DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+sqldeploy   1         1         1            1           15m
+
+D:\Azure\KBS>kubectl get svc
+NAME         TYPE           CLUSTER-IP   EXTERNAL-IP   PORT(S)          AGE
+kubernetes   ClusterIP      10.0.0.1     <none>        443/TCP          54m
+mssql        LoadBalancer   10.0.48.25   <pending>     1433:32239/TCP   <invalid>
+
+D:\Azure\KBS>kubectl get svc
+NAME         TYPE           CLUSTER-IP   EXTERNAL-IP   PORT(S)          AGE
+kubernetes   ClusterIP      10.0.0.1     <none>        443/TCP          55m
+mssql        LoadBalancer   10.0.48.25   <pending>     1433:32239/TCP   15s
+
+D:\Azure\KBS>kubectl get svc
+NAME         TYPE           CLUSTER-IP   EXTERNAL-IP      PORT(S)          AGE
+kubernetes   ClusterIP      10.0.0.1     <none>           443/TCP          55m
+mssql        LoadBalancer   10.0.48.25   52.163.223.136   1433:32239/TCP   1m
+
+D:\Azure\KBS>kubectl get svc
+NAME         TYPE           CLUSTER-IP   EXTERNAL-IP      PORT(S)          AGE
+kubernetes   ClusterIP      10.0.0.1     <none>           443/TCP          56m
+mssql        LoadBalancer   10.0.48.25   52.163.223.136   1433:32239/TCP   1m
+
+D:\Azure\KBS>kubectl get deploy
+NAME           DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+event-deploy   2         2         2            0           <invalid>
+sqldeploy      1         1         1            1           32m
+
+D:\Azure\KBS>kubectl get pods
+NAME                            READY     STATUS    RESTARTS   AGE
+event-deploy-76b67657f6-dbj74   1/1       Running   1          <invalid>
+event-deploy-76b67657f6-dpf54   1/1       Running   1          <invalid>
+sqldeploy-6cfff86f97-l4mqg      1/1       Running   0          32m
+
+D:\Azure\KBS>kubectl get svc
+NAME         TYPE           CLUSTER-IP   EXTERNAL-IP      PORT(S)          AGE
+eventsvc     LoadBalancer   10.0.17.90   52.187.161.252   80:30505/TCP     7m
+kubernetes   ClusterIP      10.0.0.1     <none>           443/TCP          1h
+mssql        LoadBalancer   10.0.48.25   52.163.223.136   1433:32239/TCP   17m
+
+D:\Azure\KBS>kubectl logs event-deploy-76b67657f6-dbj74
+[40m[1m[33mwarn[39m[22m[49m: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager[35]
+      No XML encryptor configured. Key {b118b41f-ebac-4ce6-b3f0-3f231c52d34b} may be persisted to storage in unencrypted form.
+Hosting environment: Production
+Content root path: /app
+Now listening on: http://[::]:80
+Application started. Press Ctrl+C to shut down.
+
+D:\Azure\KBS>kubectl get svc
+NAME         TYPE           CLUSTER-IP   EXTERNAL-IP      PORT(S)          AGE
+eventsvc     LoadBalancer   10.0.17.90   52.187.161.252   80:30505/TCP     9m
+kubernetes   ClusterIP      10.0.0.1     <none>           443/TCP          1h
+mssql        LoadBalancer   10.0.48.25   52.163.223.136   1433:32239/TCP   19m
+
+D:\Azure\KBS>kubectl decribe svc eventsvc
+Error: unknown command "decribe" for "kubectl"
+
+Did you mean this?
+        describe
+
+Run 'kubectl --help' for usage.
+unknown command "decribe" for "kubectl"
+
+Did you mean this?
+        describe
+
+
+D:\Azure\KBS>kubectl describe svc eventsvc
+Name:                     eventsvc
+Namespace:                default
+Labels:                   <none>
+Annotations:              kubectl.kubernetes.io/last-applied-configuration={"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"name":"eventsvc","namespace":"default"},"spec":{"ports":[{"port":80,"targetPort":80}]...
+Selector:                 app=event
+Type:                     LoadBalancer
+IP:                       10.0.17.90
+LoadBalancer Ingress:     52.187.161.252
+Port:                     <unset>  80/TCP
+TargetPort:               80/TCP
+NodePort:                 <unset>  30505/TCP
+Endpoints:                10.244.0.9:80,10.244.1.5:80
+Session Affinity:         None
+External Traffic Policy:  Cluster
+Events:
+  Type    Reason                Age   From                Message
+  ----    ------                ----  ----                -------
+  Normal  EnsuringLoadBalancer  15m   service-controller  Ensuring load balancer
+  Normal  EnsuredLoadBalancer   15m   service-controller  Ensured load balancer
+
+D:\Azure\KBS>kubectl describe pod event-deploy-76b67657f6-dbj74
+Name:               event-deploy-76b67657f6-dbj74
+Namespace:          default
+Priority:           0
+PriorityClassName:  <none>
+Node:               aks-nodepool1-12441045-1/10.240.0.4
+Start Time:         Thu, 22 Aug 2019 18:16:24 +0530
+Labels:             app=event
+                    pod-template-hash=76b67657f6
+Annotations:        <none>
+Status:             Running
+IP:                 10.244.0.9
+Controlled By:      ReplicaSet/event-deploy-76b67657f6
+Containers:
+  eventapi:
+    Container ID:   docker://a35afd0c538bb16f7d7f44235d4f29718cd4936046932f76b4004322b4a0707f
+    Image:          sameerparabdocker/eventapi:latest
+    Image ID:       docker-pullable://sameerparabdocker/eventapi@sha256:194b304b07ae78583ec118a556330e70912dc0532b55b9327ab6471a15ad7693
+    Port:           80/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Thu, 22 Aug 2019 18:16:48 +0530
+    Last State:     Terminated
+      Reason:       Error
+      Exit Code:    139
+      Started:      Thu, 22 Aug 2019 18:16:41 +0530
+      Finished:     Thu, 22 Aug 2019 18:16:43 +0530
+    Ready:          True
+    Restart Count:  1
+    Limits:
+      cpu:     500m
+      memory:  256Mi
+    Requests:
+      cpu:     500m
+      memory:  256Mi
+    Environment:
+      ConnectionStrings__SqlConnection:  Data Source=mssql;Initial Catalog=EventDB;Persist Security Info=True;User ID=sa;Password=Labuser@123456
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from default-token-wkmrj (ro)
+Conditions:
+  Type              Status
+  Initialized       True
+  Ready             True
+  ContainersReady   True
+  PodScheduled      True
+Volumes:
+  default-token-wkmrj:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  default-token-wkmrj
+    Optional:    false
+QoS Class:       Guaranteed
+Node-Selectors:  <none>
+Tolerations:     node.kubernetes.io/not-ready:NoExecute for 300s
+                 node.kubernetes.io/unreachable:NoExecute for 300s
+Events:
+  Type    Reason     Age              From                               Message
+  ----    ------     ----             ----                               -------
+  Normal  Scheduled  8m               default-scheduler                  Successfully assigned default/event-deploy-76b67657f6-dbj74 to aks-nodepool1-12441045-1
+  Normal  Pulling    8m (x2 over 8m)  kubelet, aks-nodepool1-12441045-1  pulling image "sameerparabdocker/eventapi:latest"
+  Normal  Pulled     8m (x2 over 8m)  kubelet, aks-nodepool1-12441045-1  Successfully pulled image "sameerparabdocker/eventapi:latest"
+  Normal  Created    8m (x2 over 8m)  kubelet, aks-nodepool1-12441045-1  Created container
+  Normal  Started    8m (x2 over 8m)  kubelet, aks-nodepool1-12441045-1  Started container
+
+D:\Azure\KBS>az aks browse -n k8cluster -g KBSGroup
+The Resource 'Microsoft.ContainerService/managedClusters/k8cluster' under resource group 'KBSGroup' was not found.
+
+D:\Azure\KBS>az aks browse -n k8scluster -g KBSGroup
+Merged "k8scluster" as current context in C:\Users\TRAINI~1\AppData\Local\Temp\tmpz5jgurjb
+Proxy running on http://127.0.0.1:8001/
+Press CTRL+C to close the tunnel...
+Forwarding from 127.0.0.1:8001 -> 9090
+Forwarding from [::1]:8001 -> 9090
+Handling connection for 8001
+Handling connection for 8001
+Handling connection for 8001
+Handling connection for 8001
+Handling connection for 8001
+Handling connection for 8001
+Handling connection for 8001
+Handling connection for 8001
+Handling connection for 8001
+Handling connection for 8001
+Handling connection for 8001
+Handling connection for 8001
+Handling connection for 8001
+Handling connection for 8001
+Handling connection for 8001
+Handling connection for 8001
+Handling connection for 8001
+Handling connection for 8001
+Handling connection for 8001
+Handling connection for 8001
+Handling connection for 8001
+Handling connection for 8001
+Handling connection for 8001
+E0822 18:44:43.981001   15236 portforward.go:178] lost connection to pod
+
+D:\Azure\KBS>kubectl get svc
+NAME         TYPE           CLUSTER-IP   EXTERNAL-IP      PORT(S)        AGE
+eventsvc     LoadBalancer   10.0.17.90   52.187.161.252   80:30505/TCP   39m
+kubernetes   ClusterIP      10.0.0.1     <none>           443/TCP        1h
+mssql        ClusterIP      10.0.74.9    <none>           1433/TCP       16s
+
+D:\Azure\KBS>az aks browse -n k8scluster -g KBSGroup
+Merged "k8scluster" as current context in C:\Users\TRAINI~1\AppData\Local\Temp\tmppllnbepm
+Proxy running on http://127.0.0.1:8001/
+Press CTRL+C to close the tunnel...
+Forwarding from 127.0.0.1:8001 -> 9090
+Forwarding from [::1]:8001 -> 9090
+Handling connection for 8001
+Handling connection for 8001
+Handling connection for 8001
+Handling connection for 8001
+Terminate batch job (Y/N)? y
+
+D:\Azure\KBS>kubectl version
+Client Version: version.Info{Major:"1", Minor:"10", GitVersion:"v1.10.11", GitCommit:"637c7e288581ee40ab4ca210618a89a555b6e7e9", GitTreeState:"clean", BuildDate:"2018-11-26T14:38:32Z", GoVersion:"go1.9.3", Compiler:"gc", Platform:"windows/amd64"}
+Server Version: version.Info{Major:"1", Minor:"13", GitVersion:"v1.13.10", GitCommit:"37d169313237cb4ceb2cc4bef300f2ae3053c1a2", GitTreeState:"clean", BuildDate:"2019-08-19T10:44:49Z", GoVersion:"go1.11.13", Compiler:"gc", Platform:"linux/amd64"}
+
+D:\Azure\KBS>kubectl get pvc
+NAME         STATUS    VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+mssql-data   Bound     pvc-52364bd7-c4d5-11e9-b669-ae0b8116c8ce   8Gi        RWO            azure-disk     1h
+
+D:\Azure\KBS>kubectl get svc
+NAME         TYPE           CLUSTER-IP    EXTERNAL-IP      PORT(S)        AGE
+eventsvc     LoadBalancer   10.0.17.90    52.187.161.252   80:30505/TCP   1h
+identity     LoadBalancer   10.0.115.83   <pending>        80:31816/TCP   <invalid>
+kubernetes   ClusterIP      10.0.0.1      <none>           443/TCP        2h
+mssql        ClusterIP      10.0.74.9     <none>           1433/TCP       24m
+
+D:\Azure\KBS>kubectl get pods
+NAME                               READY     STATUS    RESTARTS   AGE
+event-deploy-76b67657f6-dpf54      1/1       Running   1          56m
+event-deploy-76b67657f6-xvjlz      1/1       Running   2          33m
+identity-deploy-7fb475c566-rt7s2   1/1       Running   1          2m
+identity-deploy-7fb475c566-zhwxb   1/1       Running   0          2m
+sqldeploy-6cfff86f97-l4mqg         1/1       Running   0          1h
+
+D:\Azure\KBS>kubectl get svc
+NAME         TYPE           CLUSTER-IP    EXTERNAL-IP      PORT(S)        AGE
+eventsvc     LoadBalancer   10.0.17.90    52.187.161.252   80:30505/TCP   1h
+identity     LoadBalancer   10.0.115.83   <pending>        80:31816/TCP   <invalid>
+kubernetes   ClusterIP      10.0.0.1      <none>           443/TCP        2h
+mssql        ClusterIP      10.0.74.9     <none>           1433/TCP       24m
+
+D:\Azure\KBS>kubectl get svc
+NAME         TYPE           CLUSTER-IP    EXTERNAL-IP      PORT(S)        AGE
+eventsvc     LoadBalancer   10.0.17.90    52.187.161.252   80:30505/TCP   15h
+identity     LoadBalancer   10.0.115.83   13.67.43.28      80:31816/TCP   14h
+kubernetes   ClusterIP      10.0.0.1      <none>           443/TCP        16h
+mssql        ClusterIP      10.0.74.9     <none>           1433/TCP       15h
+
+D:\Azure\KBS>kubectl get pods
+NAME                               READY     STATUS    RESTARTS   AGE
+event-deploy-76b67657f6-dpf54      1/1       Running   1          15h
+event-deploy-76b67657f6-xvjlz      1/1       Running   2          15h
+identity-deploy-7fb475c566-rt7s2   1/1       Running   1          14h
+identity-deploy-7fb475c566-zhwxb   1/1       Running   0          14h
+sqldeploy-6cfff86f97-l4mqg         1/1       Running   0          16h
+
+D:\Azure\KBS>kubectl get rs
+NAME                         DESIRED   CURRENT   READY     AGE
+event-deploy-76b67657f6      2         2         2         15h
+identity-deploy-7fb475c566   2         2         2         14h
+sqldeploy-6cfff86f97         1         1         1         16h
+
+D:\Azure\KBS>az aks browse -n k8scluster -g KBSGroup
+Merged "k8scluster" as current context in C:\Users\TRAINI~1\AppData\Local\Temp\tmpfyqdzny6
+Proxy running on http://127.0.0.1:8001/
+Press CTRL+C to close the tunnel...
+Forwarding from 127.0.0.1:8001 -> 9090
+Forwarding from [::1]:8001 -> 9090
+Handling connection for 8001
+Handling connection for 8001
+Handling connection for 8001
+E0823 11:26:20.785261   16436 portforward.go:178] lost connection to pod
+
+D:\Azure\KBS>kubectl get svc
+NAME         TYPE           CLUSTER-IP    EXTERNAL-IP      PORT(S)        AGE
+eventsvc     LoadBalancer   10.0.17.90    52.187.161.252   80:30505/TCP   18h
+identity     LoadBalancer   10.0.115.83   13.67.43.28      80:31816/TCP   17h
+kubernetes   ClusterIP      10.0.0.1      <none>           443/TCP        19h
+mssql        ClusterIP      10.0.74.9     <none>           1433/TCP       17h
+
+D:\Azure\KBS>   TYPE           CLUSTER-IP    EXTERNAL-IP      PORT(S)        AGE
+The system cannot find the file specified.
+Error occurred while processing: CLUSTER-IP.
+The system cannot find the file specified.
+Error occurred while processing: EXTERNAL-IP.
+The system cannot find the file specified.
+Error occurred while processing: PORT(S).
+The system cannot find the file specified.
+Error occurred while processing: AGE.
+
+D:\Azure\KBS>eventsvc     LoadBalancer   10.0.17.90    52.187.161.252   80:30505/TCP   18h
+'eventsvc' is not recognized as an internal or external command,
+operable program or batch file.
+
+D:\Azure\KBS>identity     LoadBalancer   10.0.115.83   13.67.43.28      80:31816/TCP   17h
+'identity' is not recognized as an internal or external command,
+operable program or batch file.
+
+D:\Azure\KBS>kubernetes   ClusterIP      10.0.0.1      <none>           443/TCP        19h
+The system cannot find the file specified.
+
+D:\Azure\KBS>mssql        ClusterIP      10.0.74.9     <none>           1433/TCP       17h
+The system cannot find the file specified.
+
+D:\Azure\KBS>
+D:\Azure\KBS>D:\Azure\KBS>
+The syntax of the command is incorrect.
+D:\Azure\KBS>

@@ -1,0 +1,45 @@
+Azure PowerShell Commands
+
+New-AZResourceGroup -Name 'MyPowerShellRG' -Location 'south India'
+
+Connect-AzAccount #(PowerShell Core)
+Login-AzAccount  #(Same as Connect-AzAccount)
+Login-AzureRmAccount #(PowerShell)
+
+#verb-noun
+$PSVersionTable.PSVersion
+Install-Module -Name Az -AllowClobber -Scope CurrentUser
+
+GET-AzureRmResourceGroup
+
+----Azure CLI Command
+
+ls
+
+az group list -o table
+
+az group create -n MyCLIRG -l 'central India'
+
+az group delete -n MyPowerShellRG
+
+az account set s SubscriptionId -- Set defaut subcription
+
+az login
+
+>az --version
+
+#Command for ARM Template deployment
+New -AzureRmResourceGroupDeployment -Name "MyDeploy"
+     -ResourceGroupName "MyDeployGroup" 
+     -TemplateFile "Path of azuredeploy.json"
+     -TemplateParameterFile "Path of azuredeploy.parameter.json"
+
+
+
+
+
+https://cosmos.azure.com/capacitycalculator/
+sameerparabdocker
+
+Cosmos DB Connection String tabel API
+"CosmosConnection": "DefaultEndpointsProtocol=https;AccountName=sameer-tableapi;AccountKey=lsuArAfPvrtSdgP0tphRIwdibs0hBmbOavW3lnNDbKaUSIvNuUngW4VA0fHuNOhwWuwOfNDAuzJmLxDHpWYEHw==;TableEndpoint=https://sameer-tableapi.table.cosmos.azure.com:443/;"

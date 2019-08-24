@@ -1,0 +1,45 @@
+git init
+
+git add .  // After every chane you need to run the add command
+
+git commit -m "Initial commit" //Local Commit
+
+git config  --global user.name "Sameer Parab"
+
+git config  --global user.email "sameerparab82@gmail.com"
+
+git remote add origin https://github.com/SameerParab82/insuranceportal.git  //For uploading in repository
+
+git push -u origin master || git push -u origin --all // for uploading all branches
+
+git branch
+
+git Status
+
+git branch feature/products // For creating new branch
+
+git checkout feature/products  //For switching branch
+
+git merge  feature/products // For merging from master to feature/products
+
+git log
+
+git reset --hard 6c18bd8ab37f07be60102bb22d2f802522c247eb // ChangeSet Id of branch 1 level down
+
+GIt Hub  - Its a place/location to store repository
+-----------------------------------------------------------------------------------------
+After any update in code run below 3 commands
+
+git add .
+
+git commit -m "Message"
+
+git push -u origin master
+
+-- Logic App expression
+
+concat(json(triggerBody()?['MessageText'])['PartitionKey'],'insurance')
+
+json(triggerBody()?['MessageText'])['Email']
+
+

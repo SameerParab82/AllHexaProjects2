@@ -1,0 +1,13 @@
+func init --create project
+
+code .
+
+func new -- Creating function
+
+func azure functionapp list-functions  sameer-functionapp  -- listing function
+
+func start --start the function
+
+func azure functionapp publish FunctionCLIDemo -- publish only code
+
+func azure functionapp publish FunctionCLIDemo -i --publish code and setting and will ask you to overwrite the setting

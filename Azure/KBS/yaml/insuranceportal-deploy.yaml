@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: insuranceportaldeploy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: insurance
+  template:
+    metadata:
+      labels:
+        app: insurance
+    spec:           
+      containers:
+      - name: insuranceclient
+        image: sameerparabdocker/insuranceclient:latest
+        ports:
+        - containerPort: 80
+        

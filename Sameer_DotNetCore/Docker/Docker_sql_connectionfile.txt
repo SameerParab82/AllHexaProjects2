@@ -1,0 +1,13 @@
+docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Password@123456" -p 1500:1433 -d mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+
+
+
+docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=yourStrong(!)Password' -p 1433:1433 -d mcr.microsoft.com/mssql/server:2017-latest
+
+docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Password@123456" -p 1500:1433 --name mssql -d mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+
+docker run --name "eventmanagement" -d -p 8060:80 -e "ConnectionStrings:EventSqlConnection=Data Source=172.17.0.2;Initial Catalog=hexaDb;Persist Security Info=True; User ID=sa;Password=Password@123456" eventmanagement:latest
+
+
+
+Data Source=mssql;Initial Catalog=hexaDb;Persist Security Info=True, User ID=sa;Password=Password@123456

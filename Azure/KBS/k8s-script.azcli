@@ -1,0 +1,104 @@
+# Login to Azure
+az login
+
+# Create a Resource Group
+az group create -n KBSGroup -l southeastasia
+
+# Confirm group creation by listing it
+az group list -o table
+
+# create Kubernetes cluster
+#az aks create -n  k8scluster -l southeastasia -g KBSGroup --enable-addons monitoring --generate-ssh-keys --node-vm-size Standard_D1 --node-count 2
+az aks create -n  k8scluster -l southeastasia -g KBSGroup --enable-addons monitoring --generate-ssh-keys --node-count 2
+
+#Install kubernetes CLI(kubeclt.exe)
+az aks install-cli
+
+# Authenticate to Kubernetes cluster
+az aks get-credentials -n k8scluster -g KBSGroup --overwrite-existing
+
+# verify the kubectl configuration
+kubectl config view
+
+# List the nodes
+kubectl get nodes
+
+# List of pods
+kubectl get pods
+
+#List the replica sets
+kubectl get rs
+
+#List the services(API Server)
+kubectl get svc
+
+#List the deployments
+kubectl get deploy
+
+
+#Deploy insurance service
+kubectl apply -f ./yaml/insuranceportal-service.yaml
+
+#Deploy insurance deploy (rs + pods) for creating new resource
+kubectl apply -f ./yaml/insuranceportal-deploy.yaml
+
+
+#Re Deploy insurance deploy (rs + pods) 
+kubectl replace -f ./yaml/insuranceportal-deploy.yaml
+
+#Demo 2
+
+#create SQl Server SA Password as Secret
+kubectl create secret generic mssql --from-literal=SA_PASSWORD="Labuser@123456"
+
+#create PVC
+kubectl apply -f ./yaml/sqlserver-pvc.yaml
+
+
+#Deploy SQL Server POD
+kubectl apply -f ./yaml/sqlserver-deploy.yaml
+
+#Deploy service for SQL Server
+kubectl apply -f ./yaml/sqlserver-service.yaml
+
+#Re Deploy service for SQL Server as Internal Service
+kubectl replace -f ./yaml/sqlserver-service.yaml
+
+#delete service for SQL Server 
+kubectl delete svc mssql
+
+#Deploy service for EventApi
+kubectl apply -f ./yaml/eventapi-service.yaml
+
+
+#Deploy pod for EventApi
+kubectl apply -f ./yaml/eventapi-deploy.yaml
+
+
+#Deploy pod for IdentityApi
+kubectl apply -f ./yaml/identityapi-deploy.yaml
+
+#Deploy service for IdentityApi
+kubectl apply -f ./yaml/identityapi-service.yaml
+
+#view the pods logs
+kubectl logs <name of pods>
+
+#Create RBAC for Dashboard
+kubectl apply -f ./yaml/dashboard-admin.yaml
+
+
+#All kubectl commands
+kubectl get svc
+az aks browse -n k8scluster -g KBSGroup
+kubectl describe pod event-deploy-76b67657f6-dbj74
+kubectl describe svc eventsvc
+kubectl logs event-deploy-76b67657f6-dbj74
+kubectl get pods
+kubectl get deploy
+kubectl get rs
+kubectl version
+kubectl get pvc
+kubectl get secret
+
+#You can refer site aks workshop

@@ -1,0 +1,13 @@
+D:\Sameer_DotNetCore\MicroServices\IndentityAPI\IndentityAPI\bin\Debug\netcoreapp2.1\IndentityAPI.deps.json
+D:\Sameer_DotNetCore\MicroServices\IndentityAPI\IndentityAPI\bin\Debug\netcoreapp2.1\IndentityAPI.runtimeconfig.json
+D:\Sameer_DotNetCore\MicroServices\IndentityAPI\IndentityAPI\bin\Debug\netcoreapp2.1\IndentityAPI.runtimeconfig.dev.json
+D:\Sameer_DotNetCore\MicroServices\IndentityAPI\IndentityAPI\bin\Debug\netcoreapp2.1\IndentityAPI.dll
+D:\Sameer_DotNetCore\MicroServices\IndentityAPI\IndentityAPI\obj\Debug\netcoreapp2.1\IndentityAPI.csproj.CoreCompileInputs.cache
+D:\Sameer_DotNetCore\MicroServices\IndentityAPI\IndentityAPI\obj\Debug\netcoreapp2.1\IndentityAPI.RazorAssemblyInfo.cache
+D:\Sameer_DotNetCore\MicroServices\IndentityAPI\IndentityAPI\obj\Debug\netcoreapp2.1\IndentityAPI.RazorAssemblyInfo.cs
+D:\Sameer_DotNetCore\MicroServices\IndentityAPI\IndentityAPI\obj\Debug\netcoreapp2.1\IndentityAPI.AssemblyInfoInputs.cache
+D:\Sameer_DotNetCore\MicroServices\IndentityAPI\IndentityAPI\obj\Debug\netcoreapp2.1\IndentityAPI.AssemblyInfo.cs
+D:\Sameer_DotNetCore\MicroServices\IndentityAPI\IndentityAPI\obj\Debug\netcoreapp2.1\IndentityAPI.RazorTargetAssemblyInfo.cache
+D:\Sameer_DotNetCore\MicroServices\IndentityAPI\IndentityAPI\bin\Debug\netcoreapp2.1\IndentityAPI.pdb
+D:\Sameer_DotNetCore\MicroServices\IndentityAPI\IndentityAPI\obj\Debug\netcoreapp2.1\IndentityAPI.dll
+D:\Sameer_DotNetCore\MicroServices\IndentityAPI\IndentityAPI\obj\Debug\netcoreapp2.1\IndentityAPI.pdb
